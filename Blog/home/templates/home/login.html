@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<h4 class='alert alert-primary text-center m-5'> Login </h4>
+<form action='' method='POST' class='form text-center m-5'>
+    {% csrf_token %}
+    {% if form.non_field_errors%}
+    {% for error in form.non_field_errors %}
+    <span style='color:crimson'>{{error}}</span><br>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    {{ fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+    <input type='submit' value='login'class='btn btn-primary'>
+    <a href='{% url "signup" %}' class='btn btn-dark'>signup</a>
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<div class='container-fluid'>
+    <div class ='row'>
+        <div class='offset-5 col-sm-9 card m-5'>
+            <h2 class='alert alert-primary m-2'>
+                {{p.title}}
+            </h2>
+            <small>{{p.created_at}}</small>
+            <div class='text-center'> <img src="{{ p.image.url }}" class="img-responsive" height="500" width="500" /></div>
+            <p class="lead">
+                {{p.description}}
+            </p>
+            <blockquote class="blockquote text-left"> 
+                <footer class="blockquote-footer">Author <cite title="Source Title">{{p.owner.username}}</cite></footer>
+              </blockquote>
+            
+        </div>
+       
+    </div>
+    <a href="{% url 'welcome' %}" class='btn btn-success'>BACK</a>
+</div>
+
+{% endblock %}

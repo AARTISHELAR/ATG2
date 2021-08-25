@@ -1,0 +1,59 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <div class='container-fluid bg-dark '>
+        <form action='' method="POST">
+            {% csrf_token %}
+            <div class='row'>
+                <div class='col-6 offset-2'>
+                    <input class="form-control m-3 " name='name' type="search" placeholder="Enter Your Favourite Author's username" aria-label="Search">
+                </div> 
+                <div class='col-2'>
+                    <input class='form-control btn btn-warning m-3' type='submit'  value='search'>
+                </div> 
+            </div> 
+        </form> 
+        <div class='row'>
+            <div class='col-sm-3 '>
+                <a href="{% url 'add_blog' %}" class='btn btn-success mb-3'>add Blog</a>
+                <a href="{% url 'logout' %}" class='btn btn-secondary mb-3'>logout</a>
+            </div>
+        </div> 
+        
+          
+</div>
+        
+            
+        
+                
+   
+   
+   
+    
+</nav>
+
+{% if posts %}
+<div class='container-fluid'>
+    <div class='row'>
+        
+            {% for p in posts %}
+            <div class='col-sm-3 m-3'>
+             <div class='card'>
+                 <div class='h4 card-title'>{{p.title}}</div>
+                 <small>{{p.created_at}}</small>
+                 <img src="{{ p.image.url }}" class="img-responsive" height="150" width="150" />
+                 <p>
+                   <h6>{{ p.description|truncatewords:2 }}</h6> 
+                 </p>
+                 <a href="{% url 'read' p.id %}" class='btn btn-primary'>Read More</a>
+             </div>
+            </div> 
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% else %}
+<h4 class='alert alert-danger text-center m-5'>No Blog found!</h4>
+{% endif %}
+
+{% endblock %}

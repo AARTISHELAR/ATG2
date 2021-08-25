@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<h4 class='alert alert-primary text-center m-5'> Add Blog </h4>
+<form action='' method='POST' enctype="multipart/form-data" class='form m-5'>
+    {% csrf_token %}
+    {% if form.non_field_errors%}
+    {% for error in form.non_field_errors %}
+    {{error}}<br>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    {{ fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+    <input type='submit' value='add blog' class='btn btn-primary'>
+    <a href="{% url 'welcome' %}" class='btn btn-dark'>Cancle</a>
+</form>
+
+{% endblock %}
